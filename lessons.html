@@ -1,41 +1,72 @@
 
+
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Python Lessons - Open Python Lab</title>
+  <title>Lessons - Open Python Lab</title>
   <style>
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin:0; padding:0; background: linear-gradient(120deg,#00c6ff,#0072ff); color:#fff; }
-    .container { max-width:900px; margin:auto; padding:40px; background-color:rgba(0,0,0,0.6); border-radius:15px; box-shadow:0 8px 20px rgba(0,0,0,0.3); }
-    h1 { color:#ff5722; text-align:center; font-size:3em; }
-    h2 { color:#1e88e5; margin-top:30px; }
-    p, li { font-size:1.2em; line-height:1.8; }
-    a { color:#ff4081; text-decoration:none; }
-    a:hover { text-decoration:underline; }
-    .nav { text-align:center; margin-bottom:30px; }
-    .nav a { margin:0 15px; font-weight:bold; font-size:1.1em; }
-    ul { padding-left:20px; }
+    body{font-family:'Segoe UI',sans-serif;margin:0;padding:0;background:#fff;color:#000;overflow:hidden;}
+    .container{max-width:900px;margin:auto;padding:40px;background:rgba(0,0,0,0.05);border-radius:20px;box-shadow:0 8px 20px rgba(0,0,0,0.1);}
+    h1{text-align:center;font-size:3em;}
+    h2{margin-top:20px;color:#333;cursor:pointer;}
+    p,li{font-size:1.2em;line-height:1.8;}
+    ul{padding-left:20px;margin-bottom:20px;}
+    .nav{text-align:center;margin-bottom:30px;}
+    .btn{display:inline-block;padding:10px 20px;margin:5px;border:2px solid #000;border-radius:10px;text-decoration:none;font-weight:bold;transition: all 0.3s ease;}
+    .btn:hover{background:#000;color:#fff;}
+    .collapsible-content{display:none;margin-left:15px;}
+    .snake{position:absolute;width:30px;height:30px;background:#1e90ff;border-radius:50%;pointer-events:none;}
+    .cta{display:inline-block;margin:15px 0;padding:10px 25px;background:#000;color:#fff;border-radius:12px;text-decoration:none;font-weight:bold;transition:all 0.3s;}
+    .cta:hover{background:#333;}
   </style>
 </head>
 <body>
+
+<div class="snake"></div>
+
 <div class="container">
   <div class="nav">
-    <a href="index.html">Home</a> | 
-    <a href="lessons.html">Lessons</a> | 
-    <a href="projects.html">Projects</a> | 
-    <a href="resources.html">Resources</a>
+    <a href="index.html" class="btn">Home</a>
+    <a href="lessons.html" class="btn">Lessons</a>
+    <a href="projects.html" class="btn">Projects</a>
+    <a href="resources.html" class="btn">Resources</a>
   </div>
 
   <h1>Python Lessons</h1>
-  <h2>Lesson 1: What is Python?</h2>
-  <p>Python is a programming language used for web development, data science, and automation.</p>
-  <h2>Lesson 2: Variables</h2>
-  <p>Variables are used to store data in Python.</p>
-  <h2>Lesson 3: Conditions & Loops</h2>
-  <p>Learn how to control the flow of your program with if statements and loops.</p>
-  <h2>Lesson 4: Functions</h2>
-  <p>Functions help you organize your code into reusable blocks.</p>
-  <h2>Lesson 5: Small Projects</h2>
-  <p>Start building simple programs like calculators or games.</p>
+
+  <h2 onclick="toggle('lesson1')">Lesson 1: Introduction ▼</h2>
+  <div id="lesson1" class="collapsible-content">
+    <p>Learn what Python is and why it is popular.</p>
+  </div>
+
+  <h2 onclick="toggle('lesson2')">Lesson 2: Variables & Data Types ▼</h2>
+  <div id="lesson2" class="collapsible-content">
+    <p>Understand how to store and manage data in Python.</p>
+  </div>
+
+  <h2 onclick="toggle('lesson3')">Lesson 3: Conditions & Loops ▼</h2>
+  <div id="lesson3" class="collapsible-content">
+    <p>Learn decision-making and repeating tasks in Python.</p>
+  </div>
+
+  <h2 onclick="toggle('lesson4')">Lesson 4: Functions ▼</h2>
+  <div id="lesson4" class="collapsible-content">
+    <p>Organize your code into reusable blocks.</p>
+  </div>
+
+  <h2 onclick="toggle('lesson5')">Lesson 5: Small Projects ▼</h2>
+  <div id="lesson5" class="collapsible-content">
+    <p>Practice with simple programs like calculators and games.</p>
+  </div>
+
+  <a href="projects.html" class="cta">Start a Project</a>
 </div>
+
+<script>
+function toggle(id){let el=document.getElementById(id);el.style.display=(el.style.display==='none'||el.style.display==='')?'block':'none';}
+let snake=document.querySelector('.snake');
+document.addEventListener('mousemove',e=>{snake.style.left=e.clientX-15+'px';snake.style.top=e.clientY-15+'px';});
+</script>
+
 </body>
 </html>
