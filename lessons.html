@@ -18,6 +18,9 @@
     .snake{position:absolute;width:30px;height:30px;background:#1e90ff;border-radius:50%;pointer-events:none;}
     .cta{display:inline-block;margin:15px 0;padding:10px 25px;background:#000;color:#fff;border-radius:12px;text-decoration:none;font-weight:bold;transition:all 0.3s;}
     .cta:hover{background:#333;}
+    input[type="radio"]{margin-right:8px;}
+    .quiz{margin-top:20px;}
+    .quiz-question{margin-bottom:15px;}
   </style>
 </head>
 <body>
@@ -34,38 +37,74 @@
 
   <h1>Python Lessons</h1>
 
+  <!-- Example lesson with summary -->
   <h2 onclick="toggle('lesson1')">Lesson 1: Introduction ▼</h2>
   <div id="lesson1" class="collapsible-content">
-    <p>Learn what Python is and why it is popular.</p>
+    <p>Python is a popular programming language for beginners and professionals alike.</p>
+    <p><strong>Summary:</strong> Easy syntax, interpreted language, widely used in web, data science, and automation.</p>
+    <p><strong>Mind Map:</strong></p>
+    <img src="images/lesson1-mindmap.png" alt="Lesson 1 Mind Map" style="max-width:100%;border-radius:12px;">
   </div>
 
   <h2 onclick="toggle('lesson2')">Lesson 2: Variables & Data Types ▼</h2>
   <div id="lesson2" class="collapsible-content">
-    <p>Understand how to store and manage data in Python.</p>
+    <p>Variables store data, data types define the type of information.</p>
+    <p><strong>Summary:</strong> int, float, str, list, dict.</p>
+    <p><strong>Mind Map:</strong></p>
+    <img src="images/lesson2-mindmap.png" alt="Lesson 2 Mind Map" style="max-width:100%;border-radius:12px;">
   </div>
 
   <h2 onclick="toggle('lesson3')">Lesson 3: Conditions & Loops ▼</h2>
   <div id="lesson3" class="collapsible-content">
-    <p>Learn decision-making and repeating tasks in Python.</p>
+    <p>Decision making with if/else, looping with for/while.</p>
+    <p><strong>Summary:</strong> if, elif, else, for, while loops.</p>
+    <p><strong>Mind Map:</strong></p>
+    <img src="images/lesson3-mindmap.png" alt="Lesson 3 Mind Map" style="max-width:100%;border-radius:12px;">
   </div>
 
-  <h2 onclick="toggle('lesson4')">Lesson 4: Functions ▼</h2>
-  <div id="lesson4" class="collapsible-content">
-    <p>Organize your code into reusable blocks.</p>
-  </div>
+  <!-- Quiz Section -->
+  <div class="quiz">
+    <h2>Quick Quiz 📝</h2>
 
-  <h2 onclick="toggle('lesson5')">Lesson 5: Small Projects ▼</h2>
-  <div id="lesson5" class="collapsible-content">
-    <p>Practice with simple programs like calculators and games.</p>
-  </div>
+    <div class="quiz-question">
+      <p>1. What type of data is "42" in Python?</p>
+      <label><input type="radio" name="q1" value="int"> Integer</label><br>
+      <label><input type="radio" name="q1" value="str"> String</label><br>
+      <label><input type="radio" name="q1" value="float"> Float</label>
+    </div>
 
-  <a href="projects.html" class="cta">Start a Project</a>
+    <div class="quiz-question">
+      <p>2. Which loop is used when the number of iterations is known?</p>
+      <label><input type="radio" name="q2" value="for"> For Loop</label><br>
+      <label><input type="radio" name="q2" value="while"> While Loop</label><br>
+    </div>
+
+    <button onclick="checkQuiz()" class="cta">Submit Answers</button>
+    <p id="quiz-result" style="margin-top:15px;font-weight:bold;"></p>
+  </div>
 </div>
 
 <script>
-function toggle(id){let el=document.getElementById(id);el.style.display=(el.style.display==='none'||el.style.display==='')?'block':'none';}
-let snake=document.querySelector('.snake');
-document.addEventListener('mousemove',e=>{snake.style.left=e.clientX-15+'px';snake.style.top=e.clientY-15+'px';});
+  // Collapsible
+  function toggle(id){
+    let el=document.getElementById(id);
+    el.style.display=(el.style.display==='none'||el.style.display==='')?'block':'none';
+  }
+
+  // Snake follows mouse
+  let snake=document.querySelector('.snake');
+  document.addEventListener('mousemove', e=>{
+    snake.style.left=e.clientX-15+'px';
+    snake.style.top=e.clientY-15+'px';
+  });
+
+  // Quiz check
+  function checkQuiz(){
+    let score=0;
+    if(document.querySelector('input[name="q1"]:checked')?.value==='int') score++;
+    if(document.querySelector('input[name="q2"]:checked')?.value==='for') score++;
+    document.getElementById('quiz-result').innerText=`Your score: ${score}/2`;
+  }
 </script>
 
 </body>
